@@ -1,6 +1,8 @@
 const userData = require('../models/auth.model');
 const jwt = require('jsonwebtoken');
 
+// this is for auth middleware
+// use for check user is authenticated or not
 async function authMiddleware(req, res, next) {
     const token = req.cookies.token;
     if (!token) {
