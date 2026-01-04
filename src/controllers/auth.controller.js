@@ -6,7 +6,7 @@ async function signup(req, res) {
     const { username, password } = req.body;
 
     try {
-        // Check if user already exists
+       
         const existingUser = await authUserModel.findOne({ username });
         if (existingUser) {
             return res.status(400).send({
@@ -15,16 +15,9 @@ async function signup(req, res) {
             });
         }
         const hashPassword = await bcript.hash(password, 10)
-        // Create new user
-        const newUser = await authUserModel.create({ username, password: hashPassword });
-
-        // Generate token
+               const newUser = await authUserModel.create({ username, password: hashPassword });
         const token = jwt.sign({ id: newUser._id }, process.env.SECRET_KEY);
-
-        // Set cookie
         res.cookie('token', token);
-
-        // Send response
         res.status(201).send({
             success: true,
             message: 'User created successfully'

@@ -22,7 +22,7 @@ async function authMiddleware(req, res, next) {
         }
 
         req.user = user;
-        next(); // <-- This is important
+        next(); 
     } catch (error) {
         return res.status(401).send({
             success: false,
