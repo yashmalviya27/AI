@@ -7,7 +7,6 @@ const { upload } = require('../service/image.service')
 const createPost = async (req, res) => {
     const file = req.file;
     try {
-        // This is for convert image to base64
         const base64ImageFile = new Buffer.from(file.buffer).toString('base64');
        
         const caption = await generateCaption(base64ImageFile)
