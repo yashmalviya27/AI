@@ -9,8 +9,7 @@ const createPost = async (req, res) => {
     try {
         // This is for convert image to base64
         const base64ImageFile = new Buffer.from(file.buffer).toString('base64');
-        // Here I integrate AI service to generate caption.
-        // This is for generat caption
+       
         const caption = await generateCaption(base64ImageFile)
 
         const uploadedImage = await upload(file);
